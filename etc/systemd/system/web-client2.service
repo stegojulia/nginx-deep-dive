@@ -1,0 +1,16 @@
+[Unit]
+Description=web-client Node.js service
+After=network.target photo-filter.target photo-storage.target
+
+[Service]
+Restart=always
+User=nginx
+Group=nginx
+Environment=PORT=3100
+Environment=NODE_ENV=production
+Environment=AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+Environment=AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+ExecStart=/srv/www/s3photoapp/apps/web-client/bin/www
+
+[Install]
+WantedBy=multi-user.target
